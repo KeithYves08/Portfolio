@@ -20,77 +20,93 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initHamburgerMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav ul');
-    const body = document.body;
+    // Add a small delay to ensure DOM is fully loaded
+    setTimeout(() => {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('nav ul');
+        const body = document.body;
 
-    if (!hamburger || !navMenu) {
-        console.error('Hamburger menu elements not found');
-        return;
-    }
+        console.log('Hamburger element:', hamburger);
+        console.log('Nav menu element:', navMenu);
 
-    // Add click event listener to hamburger
-    hamburger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Toggle the 'active' class on both hamburger and nav menu
-        const isActive = hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        
-        // Update aria-expanded for accessibility
-        hamburger.setAttribute('aria-expanded', isActive.toString());
-        
-        // Prevent body scroll when menu is open
-        if (isActive) {
-            body.classList.add('menu-open');
-        } else {
-            body.classList.remove('menu-open');
+        if (!hamburger || !navMenu) {
+            console.error('Hamburger menu elements not found');
+            console.log('Available elements:', {
+                hamburgers: document.querySelectorAll('.hamburger'),
+                navMenus: document.querySelectorAll('nav ul')
+            });
+            return;
         }
-    });
 
-    // Close menu when clicking on a nav link
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            body.classList.remove('menu-open');
+        console.log('Hamburger menu initialized successfully');
+
+        // Add click event listener to hamburger
+        hamburger.addEventListener('click', (e) => {
+            console.log('Hamburger clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Toggle the 'active' class on both hamburger and nav menu
+            const isActive = hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            console.log('Menu is now:', isActive ? 'open' : 'closed');
+            
+            // Update aria-expanded for accessibility
+            hamburger.setAttribute('aria-expanded', isActive.toString());
+            
+            // Prevent body scroll when menu is open
+            if (isActive) {
+                body.classList.add('menu-open');
+            } else {
+                body.classList.remove('menu-open');
+            }
         });
-    });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            body.classList.remove('menu-open');
-        }
-    });
+        // Close menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                console.log('Nav link clicked, closing menu');
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+            });
+        });
 
-    // Close menu on window resize if it's open
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            body.classList.remove('menu-open');
-        }
-    });
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+            }
+        });
 
-    // Handle escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            body.classList.remove('menu-open');
-            hamburger.focus();
-        }
-    });
-} 
+        // Close menu on window resize if it's open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        // Handle escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+                hamburger.focus();
+            }
+        });
+    }, 100);
+}
 
 // Enhanced Three.js animated background for full page coverage
 function initThreeJS() {

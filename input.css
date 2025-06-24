@@ -178,30 +178,6 @@ nav a:hover::after {
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Demo content */
-.content {
-    margin-top: 100px;
-    padding: 2rem;
-    text-align: center;
-}
-
-.content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    background: var(--accent-gradient);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.content p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
 /* Mobile styles */
 @media screen and (max-width: 768px) {
     .hamburger {
