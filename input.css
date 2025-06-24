@@ -167,7 +167,7 @@ nav a:hover::after {
 }
 
 .hamburger.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(7px, 6px);
 }
 
 .hamburger.active .bar:nth-child(2) {

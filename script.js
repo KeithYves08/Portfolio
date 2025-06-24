@@ -147,8 +147,8 @@ function initThreeJS() {
       
       // Better distribution across the entire viewport
       mesh.position.set(
-    (Math.random() - 0.5) * 150,
-    (Math.random() - 0.5) * 150,
+    (Math.random() - 0.5) * 50,
+    (Math.random() - 0.5) * 50,
     (Math.random() - 0.5) * 50
     );
       
@@ -169,8 +169,8 @@ function initThreeJS() {
           y: (Math.random() - 0.5) * 0.002,
           z: (Math.random() - 0.5) * 0.002
         },
-        floatSpeed: 0.0005 + Math.random() * 0.001,
-        floatRange: 2 + Math.random() * 3,
+        floatSpeed: 0.0005 + Math.random() * 0.002,
+        floatRange: 2 + Math.random() * 4,
         initialY: mesh.position.y
       });
       
